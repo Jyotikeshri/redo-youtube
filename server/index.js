@@ -14,16 +14,15 @@ import geoip from "geoip-lite";
 app.use(bodyParser.json());
 
 app.use(cors());
+app.use("/user", (req, res, next) => {
+  user_ip = req.ip;
+  console.log("user_ip", user_ip);
+  next();
+});
 app.use("/user", userRoutes);
 
 const PORT = process.env.PORT || 3000;
 let user_ip;
-
-app.use("/", (req, res) => {
-  user_ip = req.ip;
-  console.log("user ip", user_ip);
-  res.send("server is running");
-});
 
 const ip = user_ip; // User's IP address
 
