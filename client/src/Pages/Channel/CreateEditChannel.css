@@ -1,0 +1,73 @@
+.container_CreateEditChanel {
+  background-color: transparent;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  display: flex;
+}
+.container2_CreateEditChanel {
+  margin: auto;
+  background-color: rgb(40, 40, 40);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 40rem;
+  height: 40rem;
+  padding: 0.8rem;
+
+  border-radius: 0.5rem;
+}
+.container2_CreateEditChanel h1 {
+  color: rgb(200, 200, 200);
+  text-align: center;
+  cursor: pointer;
+}
+.container2_CreateEditChanel input,
+.container2_CreateEditChanel textarea {
+  color: aliceblue;
+  resize: none;
+  padding: 0.3rem;
+
+  width: 38rem;
+  border-radius: 0.5rem;
+}
+.ibtn,
+.ibox {
+  font-size: 1rem;
+  padding: 0.2rem;
+  background-color: transparent;
+  color: black;
+  border-radius: 0.2rem;
+  margin: 0.2rem;
+  font-weight: bold;
+}
+.ibtn {
+  background-color: rgb(133, 51, 255);
+  width: 100px;
+  transition: 2s all;
+  align-items: center;
+  position: relative;
+  left: 40%;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: white;
+}
+
+.ibtn_x {
+  padding: 0.6rem;
+  color: white;
+
+  left: 610px;
+
+  cursor: pointer;
+
+  position: absolute;
+  transition: 1s color;
+  z-index: 500;
+  border-radius: 100%;
+}
+
+.ibtn_x:hover {
+  background-color: rgb(60, 60, 60);
+}

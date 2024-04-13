@@ -1,0 +1,12 @@
+.sidebar-conatiner::-webkit-scrollbar {
+  width: 0.3rem; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(70, 70, 70);
+  border-radius: 20px;
+}
+
+.sidebar-conatiner {
+  z-index: 10;
+}
