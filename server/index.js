@@ -29,6 +29,7 @@ const PORT = process.env.PORT || 3000;
 app.use("/", (req, res) => {
   const user_ip = req.ip;
   console.log("user ip", user_ip);
+  res.send("server is running");
 });
 
 app.listen(PORT, () => {
