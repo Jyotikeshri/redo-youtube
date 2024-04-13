@@ -1,0 +1,125 @@
+.channel-header-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 296px;
+  position: relative;
+  left: 150px;
+  top: -900px;
+
+  gap: 2rem;
+  border-bottom: 0.5px solid rgb(70, 70, 70);
+}
+
+.channel-photo-5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 160px;
+  margin-left: 400px;
+}
+
+.channel-photo-5 img {
+  width: 160px;
+  height: 160px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.content-info-5 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.channel-name-5 h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.user-channel-info {
+  color: rgb(170, 170, 170);
+  padding: 0;
+}
+
+.about-channel-5 {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.show-about-container {
+  background-color: rgb(40, 40, 40);
+  width: 600px;
+  padding: 1rem;
+  border-radius: 20px;
+  position: relative;
+  left: 30vw;
+  top: 50px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.heading-about {
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.close-about {
+  padding: 0.5rem;
+  border-radius: 100%;
+}
+
+.close-about:hover {
+  background-color: rgb(100, 100, 100);
+}
+
+.content-of-about {
+  color: rgb(200, 200, 200);
+  margin-bottom: 10px;
+}
+
+.chanel-about-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.heading-details {
+  font-size: 1.4rem;
+}
+
+.subscribers-about-count {
+  display: flex;
+  font-size: 20px;
+
+  align-items: center;
+  font-weight: 100;
+  gap: 1rem;
+}
+
+.about-channel-btns {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: relative;
+  top: 15px;
+  left: -20px;
+}
+
+.customise-channel-5 button {
+  background-color: rgb(40, 40, 40);
+  color: white;
+}
+.customise-channel-5 button:hover {
+  background-color: rgb(70, 70, 70);
+}

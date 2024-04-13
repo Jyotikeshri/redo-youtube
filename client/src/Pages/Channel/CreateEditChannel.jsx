@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../Actions/authAction.js";
 import { IoMdClose } from "react-icons/io";
 import "./CreateEditChannel.css";
+import { updateChannelData } from "../../Actions/ChannelUser.js";
 
 const CreateEditChannel = ({ setEditCreateChanelBtn, setUploadVideoBtn }) => {
   const CurrentUser = useSelector((state) => state.currentUserReducer);
@@ -17,12 +18,12 @@ const CreateEditChannel = ({ setEditCreateChanelBtn, setUploadVideoBtn }) => {
     } else if (!desc) {
       alert("Plz Enter Discription !");
     } else {
-      //   dispatch(
-      //     updateChannelData(CurrentUser?.result._id, {
-      //       name: name,
-      //       desc: desc,
-      //     })
-      //   );
+      dispatch(
+        updateChannelData(CurrentUser?.result._id, {
+          name: name,
+          desc: desc,
+        })
+      );
       setEditCreateChanelBtn(false);
       setTimeout(() => {
         dispatch(login({ email: CurrentUser?.result.email }));

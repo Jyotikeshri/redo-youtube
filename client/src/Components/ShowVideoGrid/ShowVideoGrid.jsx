@@ -8,9 +8,9 @@ const ShowVideoGrid = ({ videos, isToggleSidebar, List }) => {
       {List && <NavListBar List={List} />}
       <div
         className="flex flex-wrap p-5 relative videos-container gap-6 "
-        // style={{
-        //   left: isToggleSidebar ? "250px" : "150px",
-        // }}
+        style={{
+          left: isToggleSidebar ? "250px" : "100px",
+        }}
       >
         {videos.map((video) => {
           return <ShowVideo Video={video} />;

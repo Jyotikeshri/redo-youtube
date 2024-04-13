@@ -6,6 +6,7 @@ import WatchHistory from "../Pages/watchHistory/WatchHistory";
 import YourVideo from "../Pages/YourVideo/YourVideo";
 import WatchLater from "../Pages/watchLater/WatchLater";
 import LikedVideo from "../Pages/LikedVideos/LikedVideo.jsx";
+import YourChannel from "../Pages/Channel/YourChannel.jsx";
 
 const AllRoutes = ({ isToggleSidebar }) => {
   return (
@@ -33,6 +34,10 @@ const AllRoutes = ({ isToggleSidebar }) => {
       <Route
         path="/likedVideos"
         element={<LikedVideo isToggleSidebar={isToggleSidebar} />}
+      />
+      <Route
+        path="channel/:id"
+        element={<YourChannel isToggleSidebar={isToggleSidebar} />}
       />
     </Routes>
   );

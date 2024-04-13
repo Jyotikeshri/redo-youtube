@@ -36,17 +36,23 @@ const Navbar = ({ toggleSidebar, setEditCreateChanelBtn }) => {
     }
     const Email = response?.profileObj.email;
     const imageUrl = response?.profileObj.imageUrl;
+    {
+      fetch("http://ip-api.com/json/?fields=61439")
+        .then((res) => res.json())
+        .then((res) => {
+          dispatch(login({ email: Email, image: imageUrl, city: res.city }));
+        });
+    }
 
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const { latitude, longitude } = position.coords;
-      const response = await fetch(
-        `https://geocode.xyz/${latitude},${longitude}?json=1`
-      );
-      const data = await response.json();
-      const city = data.city;
+    // navigator.geolocation.getCurrentPosition(async (position) => {
+    //   const { latitude, longitude } = position.coords;
+    //   const response = await fetch(
+    //     `https://geocode.xyz/${latitude},${longitude}?json=1`
+    //   );
+    //   const data = await response.json();
+    // const city = data.city;
 
-      dispatch(login({ email: Email, image: imageUrl, city: city }));
-    });
+    // });
   };
 
   {
