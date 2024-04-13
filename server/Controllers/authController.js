@@ -5,10 +5,10 @@ export const login = async (req, res) => {
   console.log(email, image, city);
   try {
     const existingUser = await users.findOne({ email });
-    console.log(existingUser);
+    console.log("user", existingUser);
     if (!existingUser) {
       // User does not exist, create a new user
-      const newUser = await users.create({ email, image, city });
+      const newUser = await users.create({ email, image });
 
       const token = jwt.sign(
         {
