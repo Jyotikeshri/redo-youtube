@@ -1,8 +1,9 @@
 import React from "react";
 import vid from "../HomePage/vid.mp4";
 import WHL from "../../Components/WHL/WHLList.jsx";
+import { useSelector } from "react-redux";
 
-const WatchHistory = ({ isToggleSidebar }) => {
+const WatchHistory = ({ isToggleSidebar, currUser }) => {
   const videos = [
     {
       _id: 1,
@@ -33,8 +34,14 @@ const WatchHistory = ({ isToggleSidebar }) => {
       description: "roasttvhbcdbcbnd 3",
     },
   ];
+  const video_list = useSelector((state) => state.HistoryReducer);
   return (
-    <WHL name={"History"} videos={videos} isToggleSidebar={isToggleSidebar} />
+    <WHL
+      name={"History"}
+      videos={video_list}
+      isToggleSidebar={isToggleSidebar}
+      currUser={currUser}
+    />
   );
 };
 

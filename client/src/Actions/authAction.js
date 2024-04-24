@@ -3,12 +3,19 @@ import { setCurrentUser } from "./CurrentUser.js";
 
 export const login = (authData) => async (dispatch) => {
   try {
-    console.log("authData", authData);
-    const { data } = await api.login(authData);
-    console.log("data auth", data);
-    dispatch({ type: "AUTH", data });
-    dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
+    const response = await api.login(authData);
+
+    // Assuming response contains the JWT token and user data
+    const { token, result } = response.data;
+
+    // Save token to local storage
+    localStorage.setItem("token", token);
+
+    // Dispatch actions to update Redux state
+    dispatch({ type: "AUTH", data: { result, token } });
+    dispatch(setCurrentUser(result));
   } catch (error) {
+    console.error("Error in login action:", error);
     alert(error);
   }
 };

@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "geoip-lite": "^1.4.10"
+    "geoip-lite": "^1.4.10",
+    "redux-persist": "^6.0.0"
   }
 }

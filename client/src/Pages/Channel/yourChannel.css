@@ -119,6 +119,7 @@
 .customise-channel-5 button {
   background-color: rgb(40, 40, 40);
   color: white;
+  padding: "1rem";
 }
 .customise-channel-5 button:hover {
   background-color: rgb(70, 70, 70);

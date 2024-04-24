@@ -1,32 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RiPlayListAddLine } from "react-icons/ri";
-import { MdOutlineWatchLater } from "react-icons/md";
+
 import { MdOutlinePlaylistAddCheck } from "react-icons/md";
-import { MdWatchLater } from "react-icons/md";
 
-const SaveWatchLaterButton = () => {
+import { useDispatch, useSelector } from "react-redux";
+import { addTowatchLater, deleteWatchLater } from "../../Actions/WatchLater.js";
+
+const SaveWatchLaterButton = ({ video }) => {
   const [isSave, setIsSave] = useState(false);
-  const [isWatchLater, setIsWatchLater] = useState(false);
-  const handleSave = () => {
-    if (isSave) {
-      setIsSave(false);
+  const CurrentUser = useSelector((state) => state?.currentUserReducer);
+  const watchLater = useSelector((state) => state.WatchLater);
+  useEffect(() => {
+    watchLater?.data
+      .filter((q) => q?.videoId === vid && q?.Viewer === CurrentUser._id)
+      .map((m) => setIsSave(true));
+
+    console.log("useEffect like");
+  }, []);
+  const vid = video._id;
+
+  const dispatch = useDispatch();
+  const save_toggle = () => {
+    if (CurrentUser) {
+      if (isSave) {
+        setIsSave(false);
+        dispatch(
+          deleteWatchLater({
+            videoId: vid,
+            Viewer: CurrentUser._id,
+          })
+        );
+      } else {
+        setIsSave(true);
+        dispatch(
+          addTowatchLater({
+            videoId: vid,
+            Viewer: CurrentUser._id,
+          })
+        );
+      }
     } else {
-      setIsSave(true);
+      alert("Plz Login To save the video !");
     }
   };
 
-  const handleWatchLater = () => {
-    if (isWatchLater) {
-      setIsWatchLater(false);
-    } else {
-      setIsWatchLater(true);
-    }
-  };
   return (
     <div className="flex flex-row items-center justify-center gap-4">
       <button
         className="px-3 py-2 bg-greey text-white text-md flex justify-center items-center gap-3 rounded-full"
-        onClick={handleSave}
+        onClick={save_toggle}
       >
         {isSave ? (
           <>
@@ -37,22 +59,6 @@ const SaveWatchLaterButton = () => {
           <>
             <RiPlayListAddLine size={22} />
             Save
-          </>
-        )}
-      </button>
-      <button
-        className="px-3 py-2 bg-greey text-white text-md flex justify-center items-center gap-3 rounded-full"
-        onClick={handleWatchLater}
-      >
-        {isWatchLater ? (
-          <>
-            <MdWatchLater size={22} />
-            added
-          </>
-        ) : (
-          <>
-            <MdOutlineWatchLater size={22} />
-            Watchlater
           </>
         )}
       </button>

@@ -1,11 +1,52 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import vid from "../HomePage/vid.mp4";
 import LeftSidebar from "../../Components/LeftSidebar/LeftSidebar";
 import { FaRegUserCircle } from "react-icons/fa";
 import VideoPageButtons from "../../Components/VideoPageButtons/VideoPageButtons";
 import Comments from "../../Components/Comments/Comments";
+import { NavLink, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+
+import { viewVideo } from "../../Actions/VideoAction";
+import { addToHistory } from "../../Actions/HistoryAction";
 
 const VideoPage = ({ isToggleSidebar }) => {
+  const { Vid } = useParams();
+  console.log("vid", Vid);
+  const videos = useSelector((state) => state?.videoReducer);
+  const dispatch = useDispatch();
+  const CurrentUser = useSelector((state) => state?.currentUserReducer);
+
+  const handleHistory = () => {
+    console.log("videopage history");
+    dispatch(
+      addToHistory({
+        videoId: Vid,
+        Viewer: CurrentUser._id,
+      })
+    );
+    console.log("videopage history");
+  };
+  const handleViews = () => {
+    console.log("videopage viewvideo");
+
+    dispatch(
+      viewVideo({
+        id: Vid,
+      })
+    );
+    console.log("videopage viewvideo");
+  };
+  useEffect(() => {
+    if (CurrentUser) {
+      handleHistory();
+      console.log("videopage viewvideo");
+    }
+    handleViews();
+  }, []);
+  const video = videos?.data?.filter((q) => q._id === Vid)[0];
+  console.log("videopage video: ", video);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isShow, setIsShow] = useState(true);
   const handleSubscribe = () => {
@@ -27,9 +68,11 @@ const VideoPage = ({ isToggleSidebar }) => {
       <div className="p-3 flex-col " style={{ left: "150px" }}>
         <div className="w-1200 h-700 flex justify-center items-center">
           <video
-            src={vid}
+            src={`http://localhost:8080/${video.filePath}`}
             // ref={videoRef}
             className="w-1200 h-700 rounded-lg"
+            width={"1200px"}
+            height={"700px"}
             controls
             autoPlay
           >
@@ -53,14 +96,14 @@ const VideoPage = ({ isToggleSidebar }) => {
           </div> */}
         </div>
         <div className="flex justify-start items-start text-white text-xl font-bold">
-          Title
+          {video.videoTitle}
         </div>
         <div className="flex-row flex justify-between items-center mt-5">
           <div className="flex-row flex justify-center gap-7 items-center">
             <div className="flex justify-center items-center ">
               {" "}
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Purple_flower_%284764445139%29.jpg/581px-Purple_flower_%284764445139%29.jpg?20120905142317"
+                src={video.image}
                 alt=""
                 className="rounded-full"
                 width={"50px"}
@@ -69,7 +112,7 @@ const VideoPage = ({ isToggleSidebar }) => {
             </div>
             <div className="flex-col justify-start">
               <div className="flex items-center justify-center text-white text-lg ">
-                Dhiru Monchik
+                {video.uploader}
               </div>
               <div className="flex items-center justify-center text-cream text-md">
                 1200 Subscribers
@@ -94,19 +137,19 @@ const VideoPage = ({ isToggleSidebar }) => {
               )}
             </div>
           </div>
-          <VideoPageButtons />
+          <VideoPageButtons video={video} />
         </div>
 
         {isShow ? (
           <div className="flex flex-col bg-blac rounded-lg p-5 mt-10 w-1200">
             <div className="flex flex-row font-bold text-white text-md items-center justify-start gap-5">
-              <div className="flex items-center justify-center">24K Views</div>
               <div className="flex items-center justify-center">
-                24 Oct 2024
+                {video.Views} Views
               </div>
+              <div className="flex items-center justify-center"></div>
             </div>
             <div className="flex items-center justify-start mt-3 text-white text-md font-bold">
-              Title
+              {video.videoTitle}
             </div>
 
             <div
@@ -122,21 +165,21 @@ const VideoPage = ({ isToggleSidebar }) => {
             <div className="flex flex-row font-bold text-white text-md items-center justify-start gap-5">
               <div className="flex items-center justify-center">24K Views</div>
               <div className="flex items-center justify-center">
-                24 Oct 2024
+                {moment(video.createdAt).fromNow()}{" "}
               </div>
             </div>
             <div className="flex items-center justify-start mt-3 text-white text-md font-bold">
-              Title
+              {video.videoTitle}
             </div>
             <div className="text-cream  text-md flex justify-start flex-col flex-wrap ">
-              gucuguifgeuigfiygrygeuygfydfhychjbhj
+              {video.desc}
             </div>
             <div className="flex-row flex justify-between items-center mt-9">
               <div className="flex-row flex justify-center gap-7 items-center">
                 <div className="flex justify-center items-center ">
                   {" "}
                   <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Purple_flower_%284764445139%29.jpg/581px-Purple_flower_%284764445139%29.jpg?20120905142317"
+                    src={video.image}
                     alt=""
                     className="rounded-full"
                     width={"50px"}
@@ -145,7 +188,7 @@ const VideoPage = ({ isToggleSidebar }) => {
                 </div>
                 <div className="flex-col justify-start">
                   <div className="flex items-center justify-center text-white text-lg ">
-                    Dhiru Monchik
+                    {video.uploader}
                   </div>
                   <div className="flex items-center justify-center text-cream text-md">
                     1200 Subscribers
@@ -171,12 +214,15 @@ const VideoPage = ({ isToggleSidebar }) => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-start items-center mt-5">
+            <NavLink
+              to={`/channel/${video.videoChannel}`}
+              className="flex justify-start items-center mt-5"
+            >
               <button className="rounded-full border border-gray-500 border-1 hover:bg-greey flex justify-center items-center gap-4 text-cream px-4 py-2 cursor-pointer">
                 <FaRegUserCircle size={22} />
                 About
               </button>
-            </div>
+            </NavLink>
 
             <div
               className="flex justify-end items-center text-white text-md cursor-pointer"
@@ -187,7 +233,7 @@ const VideoPage = ({ isToggleSidebar }) => {
             </div>
           </div>
         )}
-        <Comments />
+        <Comments videoId={video._id} />
       </div>
     </div>
   );

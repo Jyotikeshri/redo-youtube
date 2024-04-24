@@ -4,7 +4,6 @@ import users from "../Models/userModel.js";
 export const getAllChannels = async (req, res) => {
   try {
     const allChannels = await users.find();
-    console.log("all Channels" + allChannels);
 
     const allChannelDetails = [];
     allChannels.forEach((chanel) => {
@@ -25,7 +24,6 @@ export const getAllChannels = async (req, res) => {
 export const updateChannelData = async (req, res) => {
   const { id: _id } = req.params;
   const { name, desc } = req.body;
-  console.log("updated data controller", req.body);
 
   if (!mongoose.Types.ObjectId.isValid(_id)) {
     return res.status(404).send("Channel Unavailable..");

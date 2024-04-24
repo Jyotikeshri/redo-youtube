@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import SearchList from "./SearchList";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 const Searchbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchListA, setSearchListA] = useState(false);
-  const TitleArray = ["video1 ", "video2 ", "games", "audio"].filter((q) =>
-    q.includes(searchQuery)
-  );
+  const titleArray = useSelector((s) => s?.videoReducer)
+    ?.data?.filter((q) =>
+      q?.videoTitle.toUpperCase().includes(searchQuery?.toUpperCase())
+    )
+    .map((m) => m?.videoTitle);
   return (
     <>
       <div className="hidden lg:flex border-slate-600 border-1 ">
@@ -19,15 +23,17 @@ const Searchbar = () => {
           onClick={() => setSearchListA(true)}
           value={searchQuery}
         />
-        <div
+        <NavLink
+          to={`/search/${searchQuery}`}
           className="bg-greey flex items-center justify-center   w-10 rounded-r-full text-white px-2 py-2"
           onClick={() => setSearchListA(false)}
         >
           <IoSearch size={20} />
-        </div>
+        </NavLink>
       </div>
+
       {searchQuery && searchListA && (
-        <SearchList TitleArray={TitleArray} setSearchQuery={setSearchQuery} />
+        <SearchList TitleArray={titleArray} setSearchQuery={setSearchQuery} />
       )}
     </>
   );

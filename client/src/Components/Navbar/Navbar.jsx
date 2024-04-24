@@ -17,6 +17,9 @@ import Auth from "../../Pages/Auth/AuthPage";
 const Navbar = ({ toggleSidebar, setEditCreateChanelBtn }) => {
   const [AuthBtn, setAuthBtn] = useState(false);
   const CurrentUser = useSelector((state) => state.currentUserReducer);
+  {
+    console.log("current user navbar", CurrentUser);
+  }
   useEffect(() => {
     function start() {
       gapi.client.init({
@@ -88,7 +91,7 @@ const Navbar = ({ toggleSidebar, setEditCreateChanelBtn }) => {
           {CurrentUser ? (
             <div className="flex items-center justify-center text-white cursor-pointer">
               <img
-                src={CurrentUser.result.image}
+                src={CurrentUser.image}
                 alt=""
                 className="rounded-full"
                 width={"50px"}

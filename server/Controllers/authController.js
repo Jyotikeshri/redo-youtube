@@ -2,10 +2,10 @@ import jwt from "jsonwebtoken";
 import users from "../Models/userModel.js";
 export const login = async (req, res) => {
   const { email, image, city } = req.body;
-  console.log("controller user", email, image, city);
+
   try {
     const existingUser = await users.findOne({ email });
-    console.log("user controller", existingUser);
+
     if (!existingUser) {
       // User does not exist, create a new user
       const newUser = await users.create({ email, image, city });

@@ -1,45 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import CommentBar from "./CommentBar";
+import { useDispatch, useSelector } from "react-redux";
+import { postComment } from "../../Actions/CommentAction";
 
-const Comments = () => {
-  const commentList = [
-    {
-      username: "sapna",
-      user_id: "1",
-      text: "nice video",
-      _id: 1,
-      likes: 1,
-      dislikes: 2,
-      posted: "1 hour ago",
-    },
-    {
-      username: "sapna",
-      user_id: "1",
-      text: "nice video",
-      _id: 2,
-      likes: 1,
-      dislikes: 2,
-      posted: "1 hour ago",
-    },
-    {
-      username: "sapna",
-      user_id: "1",
-      text: "nice video",
-      _id: 3,
-      likes: 1,
-      dislikes: 2,
-      posted: "1 hour ago",
-    },
-    {
-      username: "sapna",
-      user_id: "1",
-      text: "nice video",
-      _id: 4,
-      likes: 1,
-      dislikes: 2,
-      posted: "1 hour ago",
-    },
-  ];
+const Comments = ({ videoId }) => {
+  const CurrentUser = useSelector((state) => state?.currentUserReducer);
+  const [commentText, setCommentText] = useState("");
+  const CommentList = useSelector((state) => state?.commentReducer).data.filter(
+    (q) => q.Dislike < 2
+  );
+
+  const dispatch = useDispatch();
+  const onSubmitComment = (e) => {
+    e.preventDefault();
+    if (CurrentUser) {
+      if (!commentText) {
+        alert("Plz Type your comment ! ");
+      } else {
+        fetch("http://ip-api.com/json/?fields=61439")
+          .then((res) => res.json())
+          .then((res) => {
+            dispatch(
+              postComment({
+                videoId: videoId,
+                userId: CurrentUser._id,
+                commentBody: commentText,
+                userCommented: CurrentUser.name,
+                City: res.city,
+              })
+            );
+          });
+
+        setCommentText("");
+      }
+    } else {
+      alert("Plz login to post your commnet !");
+    }
+  };
   return (
     <div className="flex flex-col justify-start gap-7 mt-7">
       <div className="text-2xl font-bold text-white flex justify-start items-center">
@@ -50,7 +47,7 @@ const Comments = () => {
           <div className="flex justify-center items-center">
             {" "}
             <img
-              src="https://i2.wp.com/godofindia.com/wp-content/uploads/2017/05/ganesh-2.jpg?resize=1024%2C768&ssl=1"
+              src={CurrentUser.image}
               alt=""
               className="rounded-full object-cover"
               width={"50px"}
@@ -63,17 +60,20 @@ const Comments = () => {
               placeholder="Add a Comment"
               className="bg-black border-b border-white border-1 outline-none px-3 py-2 text-white"
               style={{ width: "1100px" }}
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
             />
             <button
               className="flex justify-center items-center px-3 py-2 text-white bg-greey rounded-full relative"
               style={{ top: "60px", left: "-150px" }}
+              onClick={(e) => onSubmitComment(e)}
             >
               Comment
             </button>
           </div>
         </div>
 
-        <CommentBar commentList={commentList} />
+        <CommentBar commentList={CommentList} videoId={videoId} />
       </div>
     </div>
   );

@@ -4,8 +4,8 @@ import { IoSearch } from "react-icons/io5";
 const SearchList = ({ TitleArray, setSearchQuery }) => {
   return (
     <div
-      className="w-400 px-1 bg-greey flex-col absolute top-100 rounded-lg -left-50"
-      style={{ top: "60px", left: "39vw" }}
+      className="w-400 px-1 bg-greey flex-col absolute top-100 rounded-lg  z-10 py-2"
+      style={{ top: "60px", left: "34vw" }}
     >
       {TitleArray.map((t) => {
         return (

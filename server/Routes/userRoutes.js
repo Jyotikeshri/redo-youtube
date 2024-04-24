@@ -6,18 +6,17 @@ import {
   getAllChannels,
   updateChannelData,
 } from "../Controllers/ChannelController.js";
+import { getAlllikeVideoController } from "../Controllers/LikeVideoController.js";
+
+router.get("/getAllChannels", getAllChannels);
 
 router.post("/login", login);
 
-// router.patch("/updateChannel/:id", updateChannelData);
-// router.get("/api", (req, res) => {
-//   res.send("user routes working");
-// });
-// router.get("/getAllChannels", getAllChannels);
+router.patch("/updateChannel/:id", updateChannelData);
+router.get("/api", (req, res) => {
+  res.send("user routes working");
+});
 
-// router.patch("/login/:id", updateChanelData);
-{
-  console.log("user routes updated");
-}
+router.get("/getAlllikeVideo", getAlllikeVideoController);
 
 export default router;

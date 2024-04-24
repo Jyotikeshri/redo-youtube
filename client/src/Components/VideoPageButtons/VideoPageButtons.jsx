@@ -4,13 +4,13 @@ import DownloadButton from "./DownloadButton";
 import LikeDislikeButton from "./LikeDislikeButton";
 import SaveWatchLaterButton from "./SaveWatchLaterButton";
 
-const VideoPageButtons = () => {
+const VideoPageButtons = ({ video }) => {
   return (
     <div className="flex flex-row justify-center items-center gap-7">
-      <LikeDislikeButton />
+      <LikeDislikeButton video={video} />
       <ShareButton />
       <DownloadButton />
-      <SaveWatchLaterButton />
+      <SaveWatchLaterButton video={video} />
     </div>
   );
 };

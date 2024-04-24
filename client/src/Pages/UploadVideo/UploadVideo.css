@@ -1,0 +1,112 @@
+.uploadVideo-container {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  display: flex;
+}
+
+.uploadVideo-container-2 {
+  margin: auto;
+  background-color: rgb(40, 40, 40);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 50rem;
+
+  height: 45rem;
+  padding: 0.8rem;
+
+  border-radius: 0.5rem;
+}
+.heading-upload {
+  font-size: 1.7rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 0.5px solid rgb(70, 70, 70);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.upload-close-icon {
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.upload-close-icon:hover {
+  background-color: rgb(50, 50, 50);
+}
+
+.upload-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.upload-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  color: rgb(200, 200, 200);
+}
+
+.upload-text {
+  text-align: center;
+  color: rgb(200, 200, 200);
+  margin-top: 50px;
+}
+
+.upload-file {
+  text-align: center;
+}
+
+.upload-file input {
+  display: none;
+}
+
+.custom-file-upload {
+  border: none;
+  background-color: rgb(51, 51, 255);
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  color: black;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.upload-title {
+  margin-top: 50px;
+}
+
+.upload-title input,
+textarea {
+  border-radius: 20px;
+  background-color: transparent;
+  color: white;
+  padding: 0.3rem 1rem;
+  width: 20rem;
+}
+
+textarea {
+  height: 10rem;
+}
+
+.ibox_div_vidupload {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  flex-direction: column;
+  width: 100%;
+}
+
+.loader {
+  width: 5rem;
+  height: 5rem;
+  padding: 2rem 0;
+  margin: auto;
+}

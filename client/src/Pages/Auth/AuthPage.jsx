@@ -7,6 +7,9 @@ import { setCurrentUser } from "../../Actions/CurrentUser.js";
 import "./Auth.css";
 function Auth({ User, setAuthBtn, setEditCreateChanelBtn }) {
   const dispatch = useDispatch();
+  {
+    console.log("auth user authPage", User);
+  }
   const onLogOutSuccess = () => {
     dispatch(setCurrentUser(null));
     alert("Log Out SuccessFully");
@@ -18,10 +21,10 @@ function Auth({ User, setAuthBtn, setEditCreateChanelBtn }) {
         <p className="User_Details">
           <div className="Chanel_logo_App">
             <p className="profile">
-              {User?.result.image ? (
+              {User.image ? (
                 <>
                   <img
-                    src={User.result.image}
+                    src={User.image}
                     alt=""
                     className="rounded-full"
                     width={"70px"}
@@ -29,17 +32,17 @@ function Auth({ User, setAuthBtn, setEditCreateChanelBtn }) {
                   />{" "}
                 </>
               ) : (
-                <>{User?.result.email.charAt(0).toUpperCase()} </>
+                <>{User?.email.charAt(0).toUpperCase()} </>
               )}
             </p>
           </div>
-          <div className="email_Auth">{User?.result.email}</div>
+          <div className="email_Auth">{User?.email}</div>
         </p>
         <div className="btns_Auth">
-          {User?.result.name ? (
+          {User.name ? (
             <>
               {
-                <Link to={`/channel/${User?.result._id}`} className="btn_Auth">
+                <Link to={`/channel/${User._id}`} className="btn_Auth">
                   Your Channel
                 </Link>
               }

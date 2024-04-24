@@ -1,0 +1,10 @@
+.your_videos_navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 2rem;
+  flex-direction: row;
+  background-color: rgba(40, 40, 40, 0.5);
+  padding: 1rem;
+  font-size: 1.3rem;
+}

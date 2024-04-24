@@ -1,40 +1,40 @@
 import React from "react";
-import vid from "../HomePage/vid.mp4";
+// import vid from "../HomePage/vid.mp4";
 import WHL from "../../Components/WHL/WHLList.jsx";
+import { useSelector } from "react-redux";
+import ShowVideoGrid from "../../Components/ShowVideoGrid/ShowVideoGrid.jsx";
+import LeftSidebar from "../../Components/LeftSidebar/LeftSidebar.jsx";
 
 const YourVideo = ({ isToggleSidebar }) => {
-  const videos = [
-    {
-      _id: 1,
-      src: vid,
-      channel_name: "Dhiru Monchik",
-      title: "roast video 1",
-      description: "roasttvhbcdbcbnd 1",
-    },
-    {
-      _id: 2,
-      src: vid,
-      channel_name: "Dhiru Monchik",
-      title: "roast video 2",
-      description: "roasttvhbcdbcbnd 2",
-    },
-    {
-      _id: 3,
-      src: vid,
-      channel_name: "Dhiru Monchik",
-      title: "roast video 3",
-      description: "roasttvhbcdbcbnd 3",
-    },
-    {
-      _id: 4,
-      src: vid,
-      channel_name: "Dhiru Monchik",
-      title: "roast video 3",
-      description: "roasttvhbcdbcbnd 3",
-    },
-  ];
+  const CurrentUser = useSelector((state) => state?.currentUserReducer);
+  const videos = useSelector((state) => state?.videoReducer)?.data.filter(
+    (q) => q.videoChannel === CurrentUser._id
+  );
+
   return (
-    <WHL name={"Videos"} videos={videos} isToggleSidebar={isToggleSidebar} />
+    <>
+      <LeftSidebar isToggleSidebar={isToggleSidebar} />
+      <h1
+        className="text-3xl text-white font-bold items-center "
+        style={{
+          position: "relative",
+          left: "250px",
+          top: "-900px",
+        }}
+      >
+        Your Videos Shown here
+      </h1>
+
+      <ShowVideoGrid
+        videos={videos}
+        isToggleSidebar={isToggleSidebar}
+        style={{
+          position: "relative",
+          left: "250px",
+          top: "-900px",
+        }}
+      />
+    </>
   );
 };
 
