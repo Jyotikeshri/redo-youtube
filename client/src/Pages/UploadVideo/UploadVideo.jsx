@@ -61,8 +61,8 @@ const UploadVideo = ({ setUploadVideoBtn, uploadVideoBtn }) => {
   };
   return (
     <div className="uploadVideo-container">
-      <div className="uploadVideo-container-2">
-        <div className="heading-upload">
+      <div className="uploadVideo-container-2 w-[300px] h-[600px] sm:w-[500px] sm:h-[500px] md:w-[40rem] md:h-[40rem] lg:w-[40rem] lg:h-[40rem]">
+        <div className="heading-upload text-white">
           Upload Video{" "}
           <IoClose
             className="upload-close-icon"
@@ -93,6 +93,7 @@ const UploadVideo = ({ setUploadVideoBtn, uploadVideoBtn }) => {
               type="text"
               placeholder="Enter Title of video"
               onChange={(e) => setTitle(e.target.value)}
+              className="w-[250px] sm:w-[450px]  md:w-[35rem]  lg:w-[35rem]"
             />
           </div>
           <div className="upload-desc upload-title">
@@ -100,12 +101,13 @@ const UploadVideo = ({ setUploadVideoBtn, uploadVideoBtn }) => {
               type="text"
               placeholder="Enter Description of video"
               onChange={(e) => setDesc(e.target.value)}
+              className="w-[250px] sm:w-[450px]  md:w-[35rem]  lg:w-[35rem] h-[150px]"
             ></textarea>
           </div>
-          <div className="upload-btn">
+          <div className="upload-btn bg-[#cc33ff] p-2 mt-2 rounded">
             <button onClick={uploadVideoFile}>Upload Video</button>
           </div>
-          <div className="loader ibox_div_vidupload">
+          {/* <div className="loader ibox_div_vidupload">
             <CircularProgressbar
               value={progress}
               text={`${progress}`}
@@ -120,7 +122,7 @@ const UploadVideo = ({ setUploadVideoBtn, uploadVideoBtn }) => {
                 backgroundColor: "#3e98c7",
               })}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

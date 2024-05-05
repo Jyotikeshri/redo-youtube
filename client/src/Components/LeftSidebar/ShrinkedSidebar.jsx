@@ -6,7 +6,7 @@ import { SiYoutubeshorts } from "react-icons/si";
 
 const ShrinkedSidebar = () => {
   return (
-    <div className="flex-col text-white w-100 h-100 hidden md:flex">
+    <div className="flex-col text-white w-100 h-100 lg:flex sm:flex md:flex  xsm:z-10 fixed top-[50px] hidden ">
       <div className="flex-col justify-center p-1">
         <div className="flex-col justify-center  gap-4 items-center m-2 hover:bg-greey cursor-pointer p-2 rounded-lg">
           <div className="flex justify-center items-center">

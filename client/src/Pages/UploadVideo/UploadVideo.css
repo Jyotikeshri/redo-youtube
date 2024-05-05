@@ -13,9 +13,9 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 50rem;
+  /* width: 50rem;
 
-  height: 45rem;
+  height: 45rem; */
   padding: 0.8rem;
 
   border-radius: 0.5rem;
@@ -30,7 +30,7 @@
 }
 
 .upload-close-icon {
-  padding: 1rem;
+  color: white;
   cursor: pointer;
   border-radius: 100%;
 }
@@ -89,11 +89,7 @@ textarea {
   background-color: transparent;
   color: white;
   padding: 0.3rem 1rem;
-  width: 20rem;
-}
-
-textarea {
-  height: 10rem;
+  /* width: 20rem; */
 }
 
 .ibox_div_vidupload {
@@ -109,4 +105,5 @@ textarea {
   height: 5rem;
   padding: 2rem 0;
   margin: auto;
+  display: hidden;
 }

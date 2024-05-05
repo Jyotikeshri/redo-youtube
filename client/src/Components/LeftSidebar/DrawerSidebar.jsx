@@ -12,8 +12,11 @@ import "./Sidebar.css";
 
 const DrawerSidebar = () => {
   return (
-    <div className="flex-col w-250 h-100  bg-black overflow-y-scroll sidebar-conatiner z-10 text-white">
-      <div className="flex-col px-2 py-2">
+    <div
+      className=" flex flex-col w-250 h-100  bg-black overflow-y-scroll sidebar-conatiner  text-white z-20  overflow-x-hidden fixed top-[50px] px-[15px]  "
+      style={{ width: "250px" }}
+    >
+      <div className="flex-col px-2 py-2 w-[200px]">
         <div className="nav-icons flex-col justify-center gap-6 text-md">
           <NavLink
             to={"/"}
@@ -26,6 +29,12 @@ const DrawerSidebar = () => {
             className="flex items-center justify-start rounded-lg p-2 hover:bg-greey cursor-pointer gap-5 px-4"
           >
             <MdOutlineExplore size={22} /> Explore
+          </NavLink>
+          <NavLink
+            to={"https://metube-fredio-call-xv4s.vercel.app/"}
+            className="flex items-center justify-start rounded-lg p-2 hover:bg-greey cursor-pointer gap-5 px-4 "
+          >
+            FredioCall
           </NavLink>
           <NavLink className="flex items-center justify-start rounded-lg p-2 hover:bg-greey cursor-pointer gap-5 px-4">
             <LuUserSquare2 size={22} /> Your Channel

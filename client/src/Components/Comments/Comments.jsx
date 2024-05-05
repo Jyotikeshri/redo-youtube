@@ -10,36 +10,47 @@ const Comments = ({ videoId }) => {
     (q) => q.Dislike < 2
   );
 
+  function isValidComment(comment) {
+    const regex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/;
+    return regex.test(comment);
+  }
+
   const dispatch = useDispatch();
   const onSubmitComment = (e) => {
     e.preventDefault();
     if (CurrentUser) {
       if (!commentText) {
-        alert("Plz Type your comment ! ");
+        alert("Plz Type your comment !");
       } else {
-        fetch("http://ip-api.com/json/?fields=61439")
-          .then((res) => res.json())
-          .then((res) => {
-            dispatch(
-              postComment({
-                videoId: videoId,
-                userId: CurrentUser._id,
-                commentBody: commentText,
-                userCommented: CurrentUser.name,
-                City: res.city,
-              })
-            );
-          });
+        if (!isValidComment(commentText)) {
+          alert("Comments cannot contain special characters!");
+          return;
+        } else {
+          fetch("http://ip-api.com/json/?fields=61439")
+            .then((res) => res.json())
+            .then((res) => {
+              dispatch(
+                postComment({
+                  videoId: videoId,
+                  userId: CurrentUser._id,
+                  commentBody: commentText,
+                  userCommented: CurrentUser.name,
+                  City: res.city,
+                })
+              );
+            });
+        }
 
         setCommentText("");
       }
     } else {
-      alert("Plz login to post your commnet !");
+      alert("Plz login to post your comment !");
     }
   };
+
   return (
-    <div className="flex flex-col justify-start gap-7 mt-7">
-      <div className="text-2xl font-bold text-white flex justify-start items-center">
+    <div className="flex flex-col justify-start gap-7 mt-7 ">
+      <div className="text-2xl font-bold text-white flex justify-start items-center lg:w-1200  md:w-[700px]">
         Comments
       </div>
       <div className="flex flex-col gap-3">
@@ -54,17 +65,16 @@ const Comments = ({ videoId }) => {
               height={"50px"}
             />
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center lg:w-1200  md:w-[700px]">
             <input
               type="text"
               placeholder="Add a Comment"
-              className="bg-black border-b border-white border-1 outline-none px-3 py-2 text-white"
-              style={{ width: "1100px" }}
+              className="bg-black border-b border-white border-1 outline-none px-3 py-2 text-white lg:w-1200  md:w-[700px]"
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
             />
             <button
-              className="flex justify-center items-center px-3 py-2 text-white bg-greey rounded-full relative"
+              className="flex justify-center items-center px-3 py-2 text-white bg-greey rounded-full relative "
               style={{ top: "60px", left: "-150px" }}
               onClick={(e) => onSubmitComment(e)}
             >

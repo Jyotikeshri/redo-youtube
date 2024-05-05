@@ -12,8 +12,8 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 40rem;
-  height: 40rem;
+  /* width: 40rem;
+  height: 40rem; */
   padding: 0.8rem;
 
   border-radius: 0.5rem;
@@ -29,7 +29,7 @@
   resize: none;
   padding: 0.3rem;
 
-  width: 38rem;
+  /* width: 38rem; */
   border-radius: 0.5rem;
 }
 .ibtn,
@@ -55,10 +55,10 @@
 }
 
 .ibtn_x {
-  padding: 0.6rem;
+  /* padding: 0.6rem; */
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
   color: white;
-
-  left: 610px;
 
   cursor: pointer;
 

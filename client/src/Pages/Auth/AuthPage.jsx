@@ -17,18 +17,16 @@ function Auth({ User, setAuthBtn, setEditCreateChanelBtn }) {
 
   return (
     <div className="Auth_container" onClick={() => setAuthBtn(false)}>
-      <div className="Auth_container2">
+      <div className="Auth_container2 w-[300px] h-[250px] relative left-[25px] sm:left-[500px] md:left-[700px] lg:left-[1500px]">
         <p className="User_Details">
           <div className="Chanel_logo_App">
-            <p className="profile">
+            <p className="profile w-[50px]">
               {User.image ? (
                 <>
                   <img
                     src={User.image}
                     alt=""
-                    className="rounded-full"
-                    width={"70px"}
-                    height={"70px"}
+                    className="rounded-full w-[50px] h-[50px]"
                   />{" "}
                 </>
               ) : (
@@ -36,7 +34,9 @@ function Auth({ User, setAuthBtn, setEditCreateChanelBtn }) {
               )}
             </p>
           </div>
-          <div className="email_Auth">{User?.email}</div>
+          <div className="email_Auth text-md  md:ms-[0px] lg:ms-[0px]">
+            {User?.email}
+          </div>
         </p>
         <div className="btns_Auth">
           {User.name ? (

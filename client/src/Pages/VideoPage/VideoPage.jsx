@@ -47,6 +47,11 @@ const VideoPage = ({ isToggleSidebar }) => {
   }, []);
   const video = videos?.data?.filter((q) => q._id === Vid)[0];
   console.log("videopage video: ", video);
+  const [selectedQuality, setSelectedQuality] = useState("1080p");
+
+  const handleQualityChange = (e) => {
+    setSelectedQuality(e.target.value);
+  };
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isShow, setIsShow] = useState(true);
   const handleSubscribe = () => {
@@ -55,52 +60,37 @@ const VideoPage = ({ isToggleSidebar }) => {
   const handleShow = () => {
     setIsShow(!isShow);
   };
-  // const videoRef = useRef(null);
-  // const [selectedQuality, setSelectedQuality] = useState(qualities[0]);
 
-  // const handleQualityChange = (quality) => {
-  //   setSelectedQuality(quality);
-  //   videoRef.current.load();
-  // };
   return (
-    <div className="flex conatiner-pages bg-black ">
+    <div className="flex conatiner-pages bg-black  ">
       <LeftSidebar isToggleSidebar={isToggleSidebar} />
-      <div className="p-3 flex-col " style={{ left: "150px" }}>
-        <div className="w-1200 h-700 flex justify-center items-center">
+      <div className="p-3 flex-col  relative left-[15px] md:left-[100px] lg:left-[250px] sm:left-[90px]">
+        <div className="w-1200 h-700 flex justify-center items-center lg:w-1200 lg:h-[700px] md:w-[700px] md:h-[500px]  sm:w-[500px] sm:h-[350px] xsm:w-[370px] xsm:h-[300px] mbsm:w-[300px] mbsm:h-[300px]">
           <video
-            src={`http://localhost:8080/${video.filePath}`}
-            // ref={videoRef}
-            className="w-1200 h-700 rounded-lg"
-            width={"1200px"}
-            height={"700px"}
+            src={`http://localhost:8080/${video.filePath.replace(
+              ".mp4",
+              `-${selectedQuality}.mp4`
+            )}`}
+            className="w-1200 h-700 rounded-lg lg:w-[1200px] lg:h-[700px] md:w-[700px] md:h-[500px]  sm:w-[500px] sm:h-[350px] xsm:w-[370px] xsm:h-[300px] mbsm:w-[300px] mbsm:h-[300px]"
             controls
             autoPlay
-          >
-            {/* {qualities.map((quality) => (
-              <source key={quality} src={src[quality]} type="video/mp4" />
-            ))}
-            Your browser does not support the video tag. */}
-          </video>
-          {/* <div>
-            <span>Quality:</span>
-            <select
-              value={selectedQuality}
-              onChange={(e) => handleQualityChange(e.target.value)}
-            >
-              {qualities.map((quality) => (
-                <option key={quality} value={quality}>
-                  {quality}
-                </option>
-              ))}
+          ></video>
+          <div className="absolute top-[250px] left-[100px] lg:top-[650px] lg:left-[900px] md:top-[450px] md:left-[400px]">
+            <span className="text-bold text-black">Quality:</span>
+            <select value={selectedQuality} onChange={handleQualityChange}>
+              <option value="320p">320p</option>
+              <option value="480p">480p</option>
+              <option value="720p">720p</option>
+              <option value="1080p">1080p</option>
             </select>
-          </div> */}
+          </div>
         </div>
         <div className="flex justify-start items-start text-white text-xl font-bold">
           {video.videoTitle}
         </div>
-        <div className="flex-row flex justify-between items-center mt-5">
+        <div className="flex-row flex justify-between items-center mt-5 lg:w-1200  md:w-[700px] ">
           <div className="flex-row flex justify-center gap-7 items-center">
-            <div className="flex justify-center items-center ">
+            <div className="flex justify-center items-center w-[50px] h-[50px] ">
               {" "}
               <img
                 src={video.image}
@@ -111,14 +101,14 @@ const VideoPage = ({ isToggleSidebar }) => {
               />
             </div>
             <div className="flex-col justify-start">
-              <div className="flex items-center justify-center text-white text-lg ">
-                {video.uploader}
+              <div className="flex items-start justify-start text-white text-md lg:text-lg md:text-lg w-[200px]  ">
+                {video.Uploader}
               </div>
-              <div className="flex items-center justify-center text-cream text-md">
+              <div className="lg:flex md:flex items-center justify-start text-cream text-md flex ">
                 1200 Subscribers
               </div>
             </div>
-            <div className="flex justify-center items-center">
+            <div className="hidden justify-center items-center lg:flex md:hidden sm:hidden ">
               {" "}
               {isSubscribed ? (
                 <button
@@ -137,11 +127,13 @@ const VideoPage = ({ isToggleSidebar }) => {
               )}
             </div>
           </div>
-          <VideoPageButtons video={video} />
+          <div className="relative flex flex-wrap -top-[50px] -left-[270px] mt-[50px] mb-[70px] lg:static md:static">
+            <VideoPageButtons video={video} />
+          </div>
         </div>
 
         {isShow ? (
-          <div className="flex flex-col bg-blac rounded-lg p-5 mt-10 w-1200">
+          <div className="flex flex-col bg-blac rounded-lg p-5 mt-10 w-[330px] sm:w-[450px] lg:w-1200  md:w-[700px]">
             <div className="flex flex-row font-bold text-white text-md items-center justify-start gap-5">
               <div className="flex items-center justify-center">
                 {video.Views} Views
@@ -161,9 +153,11 @@ const VideoPage = ({ isToggleSidebar }) => {
             </div>
           </div>
         ) : (
-          <div className="flex flex-col bg-blac rounded-lg p-5 mt-10 w-1200">
-            <div className="flex flex-row font-bold text-white text-md items-center justify-start gap-5">
-              <div className="flex items-center justify-center">24K Views</div>
+          <div className="flex flex-col bg-blac rounded-lg p-5 mt-10 w-[330px] sm:w-[450px] lg:w-1200  md:w-[700px]">
+            <div className="flex flex-row font-bold text-white text-md items-center justify-start gap-5 flex-wrap">
+              <div className="flex items-center justify-center">
+                {video.Views} Views
+              </div>
               <div className="flex items-center justify-center">
                 {moment(video.createdAt).fromNow()}{" "}
               </div>
@@ -171,7 +165,7 @@ const VideoPage = ({ isToggleSidebar }) => {
             <div className="flex items-center justify-start mt-3 text-white text-md font-bold">
               {video.videoTitle}
             </div>
-            <div className="text-cream  text-md flex justify-start flex-col flex-wrap ">
+            <div className="text-cream  text-md flex justify-start flex-col flex-wrap w-[330px] sm:w-[450px] lg:w-1200  md:w-[700px]">
               {video.desc}
             </div>
             <div className="flex-row flex justify-between items-center mt-9">

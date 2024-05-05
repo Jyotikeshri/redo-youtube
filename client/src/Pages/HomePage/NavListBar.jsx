@@ -3,7 +3,7 @@ import React from "react";
 const NavListBar = ({ List }) => {
   return (
     <div
-      className="h-90 bg-black flex items-center justify-start gap-6 relative  "
+      className="h-90 bg-black hidden lg:flex items-center justify-start gap-6 relative   "
       style={{ top: "-900px", left: "250px" }}
     >
       {List.map((l) => {

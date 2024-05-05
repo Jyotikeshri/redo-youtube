@@ -23,6 +23,10 @@ export default {
         1: "1px",
         1000: "100vw",
       },
+      screens: {
+        xsm: "400px",
+        mbsm: "200px",
+      },
       height: {
         100: "100vh",
         90: "90px",

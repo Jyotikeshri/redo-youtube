@@ -6,7 +6,7 @@ import SaveWatchLaterButton from "./SaveWatchLaterButton";
 
 const VideoPageButtons = ({ video }) => {
   return (
-    <div className="flex flex-row justify-center items-center gap-7">
+    <div className="flex flex-row justify-center items-center gap-7 ">
       <LikeDislikeButton video={video} />
       <ShareButton />
       <DownloadButton />

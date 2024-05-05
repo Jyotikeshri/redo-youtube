@@ -32,20 +32,20 @@ const CreateEditChannel = ({ setEditCreateChanelBtn, setUploadVideoBtn }) => {
   };
   return (
     <div className="absolute z-50 flex w-1000 h-100">
-      <div className="m-auto bg-greey flex flex-col relative p-10 rounded-lg container2_CreateEditChanel">
+      <div className="m-auto bg-greey flex flex-col relative p-10 rounded-lg container2_CreateEditChanel w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] md:w-[40rem] md:h-[40rem] lg:w-[40rem] lg:h-[40rem]">
         <h1 className="text-white font-bold text-2xl mt-2 mb-4">
           {CurrentUser.name ? <>Edit </> : <>Create </>}
           Your Channel
         </h1>
         <IoMdClose
-          size={23}
-          className="ibtn_x"
+          size={27}
+          className="ibtn_x relative left-[250px] sm:left-[420px] md:left-[580px] lg:left-[580px] -top-[50px]"
           onClick={() => setEditCreateChanelBtn(false)}
         />
         <input
           type="text"
           placeholder="Enter Your Channel Name"
-          className="ibox border border-1 "
+          className="ibox border border-1 w-[250px] sm:w-[450px]  md:w-[35rem]  lg:w-[35rem] "
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -55,7 +55,9 @@ const CreateEditChannel = ({ setEditCreateChanelBtn, setUploadVideoBtn }) => {
           type="text"
           rows={15}
           placeholder={"Enter Chanel Description"}
-          className={"ibox border border-1"}
+          className={
+            "ibox border border-1 w-[250px] sm:w-[450px]  md:w-[35rem]  lg:w-[35rem] h-[150px]"
+          }
           value={desc}
           onChange={(e) => setDesc(e.target.value)}
         />

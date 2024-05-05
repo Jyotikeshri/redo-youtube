@@ -21,24 +21,20 @@ import {
   addToDislikedComment,
   deleteDislikedComment,
 } from "../../Actions/DisLikeComment";
-import { translate } from "../TranslationComment/Translate.js";
+
+import { translator } from "./TranslateText.js";
 
 const Comment = ({ comment }) => {
   const [commentBody, setCommentBody] = useState("");
   const CurrentUser = useSelector((state) => state?.currentUserReducer);
-  const likedCommentList = useSelector((state) => state.likedCommentReducer);
+  const [cmtId, setcmtId] = useState("");
   const [isTranslate, setIsTranslate] = useState(false);
   const [translatedText, setTranslatedText] = useState("");
-  const disLikedCommentList = useSelector(
-    (state) => state.DislikedCommentReducer
-  );
-
-  console.log("comment body", comment.commentBody);
 
   const handleTranslate = async () => {
     setIsTranslate(true);
     try {
-      const translatedBody = await translate(comment.commentBody);
+      const translatedBody = await translator(comment.commentBody);
       setTranslatedText(translatedBody);
     } catch (error) {
       console.error("Error translating text:", error);
@@ -46,10 +42,6 @@ const Comment = ({ comment }) => {
     }
   };
 
-  console.log("disliked comment lits", disLikedCommentList);
-  console.log("liked comment list", likedCommentList);
-
-  console.log("video comments ", comment);
   const [isEdit, setIsEdit] = useState(false);
   const [isLike, setIsLike] = useState(false);
   const [isDislike, setIsDislike] = useState(false);
@@ -178,35 +170,38 @@ const Comment = ({ comment }) => {
       );
       setCommentBody("");
     }
+
     setIsEdit(false);
   };
+
   const handleDel = (id) => {
     dispatch(deleteComment(id));
   };
   return (
-    <div className="flex flex-col justify-start gap-5 relative mb-5">
+    <div className="flex flex-col justify-start gap-5 relative mb-5 lg:w-1200  md:w-[700px] sm:w-[500px] xsm:w-[370px]">
       {isEdit && (
         <form action="" onSubmit={handleOnSubmit}>
           <div className="flex justify-center items-center">
             <input
               type="text"
               placeholder="Add a Comment"
-              className="bg-black border-b border-white border-1 outline-none px-3 py-2 text-white"
+              className="bg-black border-b border-white border-1 outline-none px-3 py-2 text-white lg:w-1200  md:w-[700px] sm:w-[500px] xsm:w-[300px] mbsm:w-[250px]"
               style={{ width: "1100px" }}
               value={commentBody}
               onChange={(e) => setCommentBody(e.target.value)}
             />
             <button
-              className="flex justify-center items-center px-3 py-2 text-white bg-greey rounded-full relative"
-              style={{ top: "60px", left: "-150px" }}
+              className="flex justify-center items-center px-3 py-2 text-white bg-greey rounded-full relative -left-[150px]"
+              // style={{ top: "60px", left: "-150px" }}
+              onClick={() => handleEdit(comment._id, commentBody)}
             >
               Edit
             </button>
           </div>
         </form>
       )}
-      <div className="flex flex-row justify-start items-center gap-4 ">
-        <div className="flex justify-center items-center">
+      <div className="flex flex-row justify-start items-center gap-4 sm:w-[500px] xsm:w-[370px] flex-wrap">
+        <div className="flex justify-center items-center ">
           <img
             src={comment_user.image}
             alt=""
@@ -221,19 +216,20 @@ const Comment = ({ comment }) => {
         <div className="flex justify-center items-center text-md text-cream">
           {moment(comment.CommentOn).fromNow()}{" "}
         </div>
-        <div className="flex justify-center items-center text-md text-cream">
+        <div className=" justify-start items-center text-md text-cream hidden sm:flex md:flex lg:flex ">
           From {comment.City}
         </div>
       </div>
+
       <div
-        className="flex text-white text-lg justify-start items-center flex-wrap relative"
-        style={{ width: "900px", left: "70px" }}
+        className="flex text-white text-lg justify-start items-center flex-wrap relative w-[330px] sm:w-[500px] md:w-[700px]  lg:w-[900px] lg:left-[70px]"
+        // style={{ width: "900px", left: "70px" }}
       >
         {comment.commentBody}
         &nbsp; &nbsp; &nbsp;
         <div
           className="flex justify-center items-center text-white"
-          // onClick={handleTranslate(comment.commentBody)}
+          onClick={handleTranslate}
         >
           {" "}
           Translate{" "}
@@ -241,10 +237,10 @@ const Comment = ({ comment }) => {
       </div>
       {isTranslate && (
         <div
-          className="flex text-c ream text-lg justify-start items-center flex-wrap relative"
+          className="flex text-cream text-lg justify-start items-center flex-wrap relative"
           style={{ width: "900px", left: "70px" }}
         >
-          {translatedText}
+          Translated Text : {translatedText}
         </div>
       )}
 

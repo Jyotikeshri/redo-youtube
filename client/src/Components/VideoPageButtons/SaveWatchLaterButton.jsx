@@ -45,7 +45,7 @@ const SaveWatchLaterButton = ({ video }) => {
   };
 
   return (
-    <div className="flex flex-row items-center justify-center gap-4">
+    <div className=" flex-row items-center justify-center gap-4 lg:flex md:flex sm:flex hidden">
       <button
         className="px-3 py-2 bg-greey text-white text-md flex justify-center items-center gap-3 rounded-full"
         onClick={save_toggle}

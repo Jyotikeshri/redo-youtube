@@ -34,6 +34,7 @@ export const deleteDislikeCommentController = async (req, res) => {
       CommentId: CommentId,
       Viewer: Viewer,
     });
+    console.log("comment dislike removed");
     res.status(200).json({ message: "Removed  from your watch Laters" });
   } catch (error) {
     res.status(400).json({ message: error.message });

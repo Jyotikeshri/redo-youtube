@@ -71,7 +71,7 @@ const Navbar = ({ toggleSidebar, setEditCreateChanelBtn }) => {
 
   return (
     <>
-      <div className="bg-black flex items-center justify-between h-16 px-4 w-full">
+      <div className="bg-black flex items-center justify-between h-16 px-4 w-full fixed z-10">
         <div className="flex items-center justify-center">
           <div
             className="flex justify-center items-center me-5 ms-4 text-white cursor-pointer hover:bg-greey  rounded-full p-2"
@@ -86,8 +86,8 @@ const Navbar = ({ toggleSidebar, setEditCreateChanelBtn }) => {
         <Searchbar />
 
         <div className="flex items-center justify-center gap-7 text-white">
-          <RiVideoAddLine size={20} className="cursor-pointer" />
-          <FaRegBell size={20} className="cursor-pointer" />
+          <RiVideoAddLine size={20} className="cursor-pointer hidden md:flex" />
+          <FaRegBell size={20} className="cursor-pointer hidden md:flex" />
           {CurrentUser ? (
             <div className="flex items-center justify-center text-white cursor-pointer">
               <img

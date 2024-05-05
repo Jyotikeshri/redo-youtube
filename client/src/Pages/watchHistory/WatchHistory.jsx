@@ -36,12 +36,14 @@ const WatchHistory = ({ isToggleSidebar, currUser }) => {
   ];
   const video_list = useSelector((state) => state.HistoryReducer);
   return (
-    <WHL
-      name={"History"}
-      videos={video_list}
-      isToggleSidebar={isToggleSidebar}
-      currUser={currUser}
-    />
+    <div className="w-[100%] overflow-y-hidden">
+      <WHL
+        name={"History"}
+        videos={video_list}
+        isToggleSidebar={isToggleSidebar}
+        currUser={currUser}
+      />
+    </div>
   );
 };
 

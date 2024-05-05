@@ -63,10 +63,9 @@ function YourChannel({
     <div className="pages-container">
       <LeftSidebar isToggleSidebar={isToggleSidebar} />
       <div
-        className="pages-container-2"
+        className="pages-container-2 -ms-[50px] me-[20px]"
         style={{
           width: isToggleSidebar ? "calc(100vw - 90px)" : "calc(100vw - 240px)",
-          marginLeft: isToggleSidebar ? "100px" : "50px",
         }}
       >
         <DescribeChannel

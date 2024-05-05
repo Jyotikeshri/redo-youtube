@@ -1,9 +1,11 @@
 import videoFiles from "../Models/VideoFile.js";
+import { videoTranscoder } from "../uploads/TranscodeVideoController.js";
 export const uploadVideo = async (req, res, next) => {
   if (req.file === undefined) {
     res.status(404).json({ message: "plz Upload a '.mp4' video file only " });
   } else {
     try {
+      await videoTranscoder(req.file.originalname, req.file.path);
       const file = new videoFiles({
         videoTitle: req.body.title,
         fileName: req.file.originalname,
@@ -16,8 +18,9 @@ export const uploadVideo = async (req, res, next) => {
         desc: req.body.desc,
         dislike: req.body.dislike,
       });
-      //   console.log(file);
+      console.log(file);
       await file.save();
+
       res.status(200).send("File uploded successfully");
     } catch (error) {
       res.status(400).send(error.message);

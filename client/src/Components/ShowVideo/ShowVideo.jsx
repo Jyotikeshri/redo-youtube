@@ -9,16 +9,16 @@ const ShowVideo = ({ Video }) => {
   return (
     <NavLink
       to={`/videopage/${Video._id}`}
-      className="flex-col justify-start me-2 ms-2 video-container"
+      className="flex-col justify-start me-2 ms-2 video-container "
     >
       <video
         src={`http://localhost:8080/${Video.filePath}`}
         width={"350px"}
         height={"300px"}
-        className="rounded-lg z-0"
+        className="rounded-lg z-0 "
       ></video>
       <div className="flex justify-start items-center flex-row">
-        <div className="channel-logo flex justify-start items-center p-2 m-2">
+        <div className="channel-logo flex justify-start items-center p-2 m-2 ">
           <img
             src={Video.image}
             alt=""

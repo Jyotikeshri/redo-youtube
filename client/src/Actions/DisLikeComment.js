@@ -28,7 +28,7 @@ export const deleteDislikedComment =
     try {
       const { CommentId, Viewer } = DislikedCommentData;
       await api.deleteDislikedComment(CommentId, Viewer);
-      console.log(`deleted ${DislikedCommentData}`);
+      console.log(`deleted ${(CommentId, Viewer)}`);
       dispatch(getAllDislikedComment());
     } catch (error) {
       console.log(error);

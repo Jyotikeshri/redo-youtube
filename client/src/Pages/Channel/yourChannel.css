@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  height: 296px;
+
   position: relative;
   left: 150px;
   top: -900px;
@@ -16,14 +16,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 160px;
-  height: 160px;
-  margin-left: 400px;
+  /* width: 160px;
+  height: 160px; */
 }
 
 .channel-photo-5 img {
-  width: 160px;
-  height: 160px;
+  /* width: 160px;
+  height: 160px; */
   border-radius: 100%;
   object-fit: cover;
 }
@@ -53,7 +52,7 @@
 
 .show-about-container {
   background-color: rgb(40, 40, 40);
-  width: 600px;
+
   padding: 1rem;
   border-radius: 20px;
   position: relative;
