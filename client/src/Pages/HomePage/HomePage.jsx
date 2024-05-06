@@ -12,7 +12,7 @@ const HomePage = ({ isToggleSidebar }) => {
   console.log("all videos", videos);
   const NavList = ["video", "gaming", "animation", "sports", "news", "coding"];
   return (
-    <div className="conatiner-pages text-white flex flex-wrap lg:w-[100vw] md:w-[900px] sm:w-[700px] xsm:w-[300px] h-100 ">
+    <div className="conatiner-pages text-white flex flex-wrap lg:w-[1800px] md:w-[900px] sm:w-[700px] xsm:w-[300px] h-100 ">
       <LeftSidebar isToggleSidebar={isToggleSidebar} />
 
       <ShowVideoGrid

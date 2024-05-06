@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CommentBar from "./CommentBar";
 import { useDispatch, useSelector } from "react-redux";
 import { postComment } from "../../Actions/CommentAction";
+import axios from "axios";
 
 const Comments = ({ videoId }) => {
   const CurrentUser = useSelector((state) => state?.currentUserReducer);
@@ -10,13 +11,35 @@ const Comments = ({ videoId }) => {
     (q) => q.Dislike < 2
   );
 
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
+
   function isValidComment(comment) {
     const regex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/;
     return regex.test(comment);
   }
 
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+    });
+  });
+
+  const options = {
+    method: "GET",
+    url: "https://map-geocoding.p.rapidapi.com/json",
+    params: {
+      latlng: `${latitude},${longitude}`,
+    },
+    headers: {
+      "X-RapidAPI-Key": "8f77a2a545mshf120f1b646b7bbcp1ea787jsnbf836e7c7f14",
+      "X-RapidAPI-Host": "map-geocoding.p.rapidapi.com",
+    },
+  };
+
   const dispatch = useDispatch();
-  const onSubmitComment = (e) => {
+  const onSubmitComment = async (e) => {
     e.preventDefault();
     if (CurrentUser) {
       if (!commentText) {
@@ -26,19 +49,18 @@ const Comments = ({ videoId }) => {
           alert("Comments cannot contain special characters!");
           return;
         } else {
-          fetch("https://ip-api.com/json/?fields=61439")
-            .then((res) => res.json())
-            .then((res) => {
-              dispatch(
-                postComment({
-                  videoId: videoId,
-                  userId: CurrentUser._id,
-                  commentBody: commentText,
-                  userCommented: CurrentUser.name,
-                  City: res.city,
-                })
-              );
-            });
+          const response = await axios.request(options);
+
+          const city = response.data.results[0].address_components[3].long_name;
+          dispatch(
+            postComment({
+              videoId: videoId,
+              userId: CurrentUser._id,
+              commentBody: commentText,
+              userCommented: CurrentUser.name,
+              City: city,
+            })
+          );
         }
 
         setCommentText("");
