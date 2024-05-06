@@ -26,7 +26,7 @@ const Comments = ({ videoId }) => {
           alert("Comments cannot contain special characters!");
           return;
         } else {
-          fetch("http://ip-api.com/json/?fields=61439")
+          fetch("https://ip-api.com/json/?fields=61439")
             .then((res) => res.json())
             .then((res) => {
               dispatch(
