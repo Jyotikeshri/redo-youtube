@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: `https://metube-i2wi.onrender.com/` });
-// const API = axios.create({ baseURL: " http://localhost:8080" });
+// const API = axios.create({ baseURL: `https://metube-i2wi.onrender.com/` });
+const API = axios.create({ baseURL: " http://localhost:8080" });
 // const API = axios.create({
 //   baseURL: `https://youtubeclone5031.herokuapp.com/`,
 // });
@@ -29,7 +29,13 @@ export const fetchAllChannel = () => {
 
 export const uploadVideo = (fileData, fileOptions) => {
   console.log("Uploading video api", fileData, fileOptions);
-  return API.post("/video/uploadVideo", fileData, fileOptions);
+  return API.post("/video/uploadVideo", fileData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      // Add any other headers you need here
+    },
+    ...fileOptions,
+  });
 };
 
 export const getVideos = () => API.get("/video/getvideos");

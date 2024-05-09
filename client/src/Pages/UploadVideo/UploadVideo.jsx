@@ -50,7 +50,9 @@ const UploadVideo = ({ setUploadVideoBtn, uploadVideoBtn }) => {
       fileData.append("channel", CurrentUser._id);
       fileData.append("image", CurrentUser.image);
       fileData.append("Uploader", CurrentUser.name);
-      console.log("fileData", fileData);
+
+      const file = fileData.get("file");
+      console.log("file", file);
       dispatch(
         uploadVideo({
           fileData: fileData,

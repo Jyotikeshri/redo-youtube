@@ -23,7 +23,16 @@ const routes = express.Router();
 
 routes.get("/getAlllikeVideo", getAlllikeVideoController);
 
-routes.post("/uploadVideo", upload.single("file"), uploadVideo);
+routes.post(
+  "/uploadVideo",
+
+  upload.single("file"),
+  (req, res, next) => {
+    console.log("upload route triggered after file", req.body);
+    next(); // Call next() to pass the request to the next middleware
+  },
+  uploadVideo
+);
 
 routes.get("/getvideos", getAllvideos);
 routes.patch("/like/:id", likeController);
