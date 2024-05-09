@@ -40,8 +40,7 @@ import userRoutes from "./Routes/userRoutes.js";
 import videoRoutes from "./Routes/VideoRoutes.js";
 import path from "path";
 import CommentRoutes from "./Routes/CommentRoutes.js";
-import { v2 as cloudinary } from "cloudinary";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
+
 import multer from "multer";
 
 dotenv.config();
