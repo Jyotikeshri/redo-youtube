@@ -49,23 +49,23 @@ import { main } from "./DB/ConnectDB.js";
 const app = express();
 
 // Cloudinary configuration
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
-});
+// cloudinary.config({
+//   cloud_name: process.env.CLOUD_NAME,
+//   api_key: process.env.API_KEY,
+//   api_secret: process.env.API_SECRET,
+// });
 
 // Multer upload middleware
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: "uploads",
-    allowed_formats: ["mp4"],
-    format: async (req, file) => "mp4",
-    public_id: (req, file) => file.originalname,
-  },
-});
-const upload = multer({ storage: storage });
+// const storage = new CloudinaryStorage({
+//   cloudinary: cloudinary,
+//   params: {
+//     folder: "uploads",
+//     allowed_formats: ["mp4"],
+//     format: async (req, file) => "mp4",
+//     public_id: (req, file) => file.originalname,
+//   },
+// });
+// const upload = multer({ storage: storage });
 
 app.use(bodyParser.json());
 app.use(express.json({ limit: "100mb" }));
