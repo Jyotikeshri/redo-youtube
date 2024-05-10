@@ -74,6 +74,10 @@ app.use("/uploads", express.static(path.join("uploads")));
 
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("<h1>Hello World</h1>");
+});
+
 app.use("/user", userRoutes);
 app.use("/video", videoRoutes);
 app.use("/comment", CommentRoutes);

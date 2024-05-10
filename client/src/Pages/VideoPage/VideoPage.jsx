@@ -67,7 +67,7 @@ const VideoPage = ({ isToggleSidebar }) => {
       <div className="p-3 flex-col  relative left-[15px] md:left-[100px] lg:left-[250px] sm:left-[90px]">
         <div className="w-1200 h-700 flex justify-center items-center lg:w-1200 lg:h-[700px] md:w-[700px] md:h-[500px]  sm:w-[500px] sm:h-[350px] xsm:w-[370px] xsm:h-[300px] mbsm:w-[300px] mbsm:h-[300px]">
           <video
-            src={`https://me-tube-gffn.onrender.com/${video.filePath.replace(
+            src={`http://localhost:8080/${video.filePath.replace(
               ".mp4",
               `-${selectedQuality}.mp4`
             )}`}
