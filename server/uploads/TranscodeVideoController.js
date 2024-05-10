@@ -12,7 +12,7 @@ export const videoTranscoder = async (filename, filepath) => {
   console.log("video basename", baseName(filepath));
   const basename = baseName(filepath);
 
-  ffmpeg.setFfmpegPath("C:\\PATH_programs\\ffmpeg.exe");
+  // ffmpeg.setFfmpegPath("C:\\PATH_programs\\ffmpeg.exe");
 
   ffmpeg(`uploads/${basename}.mp4`)
     .output(`uploads/${basename}-320p.mp4`)
