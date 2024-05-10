@@ -1,3 +1,4 @@
+import { uploadToCloudinary } from "../Helpers/FileHelper.js";
 import videoFiles from "../Models/VideoFile.js";
 import { videoTranscoder } from "../uploads/TranscodeVideoController.js";
 export const uploadVideo = async (req, res, next) => {
@@ -5,11 +6,15 @@ export const uploadVideo = async (req, res, next) => {
     res.status(404).json({ message: "plz Upload a '.mp4' video file only " });
   } else {
     try {
-      await videoTranscoder(req.file.originalname, req.file.path);
+      console.log("req.file", req.file);
+      const result = await uploadToCloudinary(req.file);
+      console.log("result", result);
+
+      await videoTranscoder(req.file.originalname, result);
       const file = new videoFiles({
         videoTitle: req.body.title,
         fileName: req.file.originalname,
-        filePath: req.file.path,
+        filePath: result,
         fileType: req.file.mimetype,
         fileSize: req.file.size,
         videoChannel: req.body.channel,

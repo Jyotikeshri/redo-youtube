@@ -1,6 +1,6 @@
 import express from "express";
 import { getAllvideos, uploadVideo } from "../Controllers/VideoController.js";
-import upload from "../Helpers/FileHelper.js";
+import { upload } from "../Helpers/FileHelper.js";
 import { likeController } from "../Controllers/LikeController.js";
 import {
   deleteLikeVideoController,
@@ -28,7 +28,7 @@ routes.post(
 
   upload.single("file"),
   (req, res, next) => {
-    console.log("upload route triggered after file", req.body);
+    console.log("upload route triggered after file", req.file);
     next(); // Call next() to pass the request to the next middleware
   },
   uploadVideo

@@ -51,7 +51,7 @@ const UploadVideo = ({ setUploadVideoBtn, uploadVideoBtn }) => {
       fileData.append("image", CurrentUser.image);
       fileData.append("Uploader", CurrentUser.name);
 
-      const file = fileData.get("file");
+      const file = fileData.get("file"); // Access the file using the name "file"
       console.log("file", file);
       dispatch(
         uploadVideo({
@@ -61,6 +61,7 @@ const UploadVideo = ({ setUploadVideoBtn, uploadVideoBtn }) => {
       );
     }
   };
+
   return (
     <div className="uploadVideo-container">
       <div className="uploadVideo-container-2 w-[300px] h-[600px] sm:w-[500px] sm:h-[500px] md:w-[40rem] md:h-[40rem] lg:w-[40rem] lg:h-[40rem]">
@@ -85,6 +86,7 @@ const UploadVideo = ({ setUploadVideoBtn, uploadVideoBtn }) => {
             <input
               type="file"
               id="videoFile"
+              name="videoFile"
               onChange={(e) => handleSetVideoFile(e)}
               accept=".mp4, .mov, .wmv, .mkv"
               multiple
