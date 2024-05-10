@@ -12,7 +12,7 @@ const ShowVideo = ({ Video }) => {
       className="flex-col justify-start me-2 ms-2 video-container "
     >
       <video
-        src={`http://localhost:8080/${Video.filePath}`}
+        src={`https://metube-backend.onrender.com/${Video.filePath}`}
         width={"350px"}
         height={"300px"}
         className="rounded-lg z-0 "
