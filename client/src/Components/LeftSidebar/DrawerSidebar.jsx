@@ -9,8 +9,10 @@ import { MdOutlineWatchLater } from "react-icons/md";
 import { AiOutlineLike } from "react-icons/ai";
 import { GoVideo } from "react-icons/go";
 import "./Sidebar.css";
+import { useSelector } from "react-redux";
 
 const DrawerSidebar = () => {
+  const User = useSelector((state) => state.currentUserReducer);
   return (
     <div
       className=" flex flex-col w-250 h-100  bg-black overflow-y-scroll sidebar-conatiner  text-white z-20  overflow-x-hidden fixed top-[50px] px-[15px]  "
@@ -36,9 +38,12 @@ const DrawerSidebar = () => {
           >
             FredioCall
           </NavLink>
-          <NavLink className="flex items-center justify-start rounded-lg p-2 hover:bg-greey cursor-pointer gap-5 px-4">
+          {/* <NavLink
+            to={`/channel/${User._id}`}
+            className="flex items-center justify-start rounded-lg p-2 hover:bg-greey cursor-pointer gap-5 px-4"
+          >
             <LuUserSquare2 size={22} /> Your Channel
-          </NavLink>
+          </NavLink> */}
           <NavLink className="flex items-center justify-start rounded-lg p-2 hover:bg-greey cursor-pointer gap-5 px-4">
             <SiYoutubeshorts size={22} /> Shorts
           </NavLink>

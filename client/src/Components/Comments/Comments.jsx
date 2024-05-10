@@ -15,7 +15,7 @@ const Comments = ({ videoId }) => {
   const [longitude, setLongitude] = useState();
 
   function isValidComment(comment) {
-    const regex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/;
+    const regex = /^[a-zA-Z0-9]+$/;
     return regex.test(comment);
   }
 
