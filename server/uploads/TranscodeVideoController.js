@@ -16,14 +16,6 @@ export const videoTranscoder = async (filename, filepath) => {
     .videoCodec("libx264")
     .size("640x320")
 
-    .output(`${basename}-480p.mp4`)
-    .videoCodec("libx264")
-    .size("854x480")
-
-    .output(`${basename}-720p.mp4`)
-    .videoCodec("libx264")
-    .size("1280x720")
-
     .output(`${basename}-1080p.mp4`)
     .videoCodec("libx264")
     .size("1920x1080")
@@ -41,12 +33,7 @@ export const videoTranscoder = async (filename, filepath) => {
 
       // Upload each transcoded video to Cloudinary
       try {
-        const files = [
-          `${basename}-320p.mp4`,
-          `${basename}-480p.mp4`,
-          `${basename}-720p.mp4`,
-          `${basename}-1080p.mp4`,
-        ];
+        const files = [`${basename}-320p.mp4`, `${basename}-1080p.mp4`];
 
         for (const file of files) {
           const result = await cloudinary.v2.uploader.upload(file, {
